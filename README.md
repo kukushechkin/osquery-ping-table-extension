@@ -53,32 +53,28 @@ An alternative path for implementation might have been to not to deal with osque
 ## Sample queries
 
 ```shell
-osquery> select * from ping where (host = '127.0.0.1' or host = 'ya.ru') and latency < '0.01';
-127.0.0.1
-ya.ru
+osquery> select * from ping where (host = '127.0.0.1' or host = 'apple.com') and latency < '6';
 +-----------+----------+
 | host      | latency  |
 +-----------+----------+
-| 127.0.0.1 | 0.000362 |
+| 127.0.0.1 | 0.540972 |
 +-----------+----------+
 
-osquery> select * from ping where (host = '127.0.0.1' or host = 'ya.ru') and latency < '0.03';
-127.0.0.1
-ya.ru
-+-----------+----------+
-| host      | latency  |
-+-----------+----------+
-| 127.0.0.1 | 0.000507 |
-| ya.ru     | 0.028335 |
-+-----------+----------+
+osquery> select * from ping where (host = '127.0.0.1' or host = 'apple.com') and latency < '60';
++-----------+-----------+
+| host      | latency   |
++-----------+-----------+
+| 127.0.0.1 | 0.877976  |
+| apple.com | 56.755066 |
++-----------+-----------+
 
 osquery> select * from ping where host = 'apple.com' or host ='127.0.0.1' or host ='asdasdasda';
-+------------+----------+
-| host       | latency  |
-+------------+----------+
-| 127.0.0.1  | 0.00095  |
-| apple.com  | 0.070135 |
-| asdasdasda | Inf      |
-+------------+----------+
++------------+-----------+
+| host       | latency   |
++------------+-----------+
+| 127.0.0.1  | 0.712991  |
+| apple.com  | 57.023048 |
+| asdasdasda | Inf       |
++------------+-----------+
 ```
 

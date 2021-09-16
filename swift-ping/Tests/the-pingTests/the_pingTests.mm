@@ -20,6 +20,7 @@
     double latency = latencyForDestination("apple.com");
     XCTAssertTrue(latency > 0);
     XCTAssertTrue(latency < INFINITY);
+    XCTAssertTrue(latency != 42.0); // usual hardcoded test value
 }
 
 @end

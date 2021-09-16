@@ -8,19 +8,20 @@ let package = Package(
     products: [
         .library(
             name: "the-ping",
+            type: .static,
             targets: ["the-ping"]),
     ],
     dependencies: [
-        .package(name: "SwiftyPing", url: "https://github.com/kukushechkin/SwiftyPing", .branch("fix-observer-inform-on-success"))
+        // using swift lib wasn't wise when it came to building actual osquery extension
+        // .package(name: "SwiftyPing", url: "https://github.com/kukushechkin/SwiftyPing", .branch("fix-observer-inform-on-success"))
     ],
     targets: [
         .target(
-            name: "swifty-ping-wrapper",
-            dependencies: ["SwiftyPing"]
-        ),
+            name: "SimplePing",
+            dependencies: []),
         .target(
             name: "the-ping",
-            dependencies: ["swifty-ping-wrapper"],
+            dependencies: ["SimplePing"],
             cxxSettings: [
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ]),
@@ -30,5 +31,6 @@ let package = Package(
             cxxSettings: [
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ]),
-    ]
+    ],
+    cxxLanguageStandard: .cxx11
 )

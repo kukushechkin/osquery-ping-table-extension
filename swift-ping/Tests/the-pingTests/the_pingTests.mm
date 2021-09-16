@@ -23,4 +23,9 @@
     XCTAssertTrue(latency != 42.0); // the usual hardcoded test value
 }
 
+- (void)testPingUnreachable {
+    double latency = Ping::latencyForDestination("asdklajskldja");
+    XCTAssertEqual(latency, INFINITY);
+}
+
 @end

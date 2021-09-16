@@ -4,14 +4,14 @@ cmake_minimum_required(VERSION 3.21)
 
 addOsqueryExtensionEx("PingTableExt" "table" "ping"
   SOURCES src/ping_ext.cpp
-  INCLUDEDIRS "${CMAKE_CURRENT_SOURCE_DIR}/../swift-ping/Sources/the-ping/include"
+  INCLUDEDIRS "$ENV{PING_HEADERS_DIR}"
   MAININCLUDES "${CMAKE_CURRENT_SOURCE_DIR}/src/ping_ext.h"
   LIBRARIES
-    the-ping.a
+    $ENV{PING_LIB_NAME}
 )
 
 link_directories(
-  "${CMAKE_CURRENT_SOURCE_DIR}/../swift-ping/.build/x86_64-apple-macosx/release"
+  "$ENV{PING_LIB_DIR}"
 )
 
 # oh, ffs

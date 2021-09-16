@@ -1,4 +1,4 @@
-#import "MainObj.h"
+#import "include/SimplePingObj.h"
 
 #include <sys/socket.h>
 #include <netdb.h>
@@ -74,13 +74,13 @@ static NSString * shortErrorFromError(NSError * error) {
 }
 
 
-#pragma mark * Main
+#pragma mark * SimplePingObj
 
 /*! The main object for our tool.
  *  \details This exists primarily because SimplePing requires an object to act as its delegate.
  */
 
-@interface Main()
+@interface SimplePingObj()
 
 @property NSDate * startTime;
 
@@ -93,7 +93,7 @@ static NSString * shortErrorFromError(NSError * error) {
 
 @end
 
-@implementation Main
+@implementation SimplePingObj
 
 - (instancetype)init {
     if(self = [super init]) {

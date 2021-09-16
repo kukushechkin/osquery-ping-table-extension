@@ -3,13 +3,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "the-ping",
+    name: "single-ping-lib",
     platforms: [.macOS(.v10_15)],
     products: [
         .library(
-            name: "the-ping",
+            name: "single-ping-lib",
             type: .static,
-            targets: ["the-ping"]),
+            targets: ["single-ping-lib"]),
     ],
     dependencies: [
         // using swift lib wasn't wise when it came to building actual osquery extension
@@ -20,14 +20,14 @@ let package = Package(
             name: "SimplePing",
             dependencies: []),
         .target(
-            name: "the-ping",
+            name: "single-ping-lib",
             dependencies: ["SimplePing"],
             cxxSettings: [
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ]),
         .testTarget(
-            name: "the-pingTests",
-            dependencies: ["the-ping"],
+            name: "single-ping-libTests",
+            dependencies: ["single-ping-lib"],
             cxxSettings: [
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ]),

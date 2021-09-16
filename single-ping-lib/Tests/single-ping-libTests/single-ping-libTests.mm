@@ -1,6 +1,6 @@
 #import <XCTest/XCTest.h>
 
-@import the_ping;
+@import single_ping_lib;
 
 @interface FSCCodesignTests : XCTestCase
 

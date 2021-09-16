@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
-@import SimplePing;
+#import "../SimplePing.h"
 
-@interface Main : NSObject <SimplePingDelegate>
+@interface SimplePingObj : NSObject <SimplePingDelegate>
 
 @property NSTimeInterval duration;
 

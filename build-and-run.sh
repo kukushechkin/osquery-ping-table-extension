@@ -13,16 +13,20 @@ EXTENSION_NAME=extension_ping
 }
 
 # build ping library
-swift test --package-path "$PROJECT_DIR"/swift-ping || {
-	echo "ping lib test failed"
+PING_LIB_NAME=single-ping-lib
+swift test --package-path "$PROJECT_DIR"/$PING_LIB_NAME || {
+	echo "$PING_LIB_NAME tests failed"
 	exit 2	
 }
-swift build --package-path "$PROJECT_DIR"/swift-ping --configuration release || {
-	echo "Failed to build the-ping lib"
+swift build --package-path "$PROJECT_DIR"/$PING_LIB_NAME --configuration release || {
+	echo "Failed to build $PING_LIB_NAME lib"
 	exit 2
 }
-# TODO: pass to cmake
-# PING_LIB_DIR=$(swift build --package-path "$PROJECT_DIR"/swift-ping --configuration release --show-bin-path)
+PING_LIB_DIR=$(swift build --package-path "$PROJECT_DIR"/$PING_LIB_NAME --configuration release --show-bin-path)
+
+echo PING_LIB_NAME=$PING_LIB_NAME
+echo PING_LIB_DIR=$PING_LIB_DIR
+echo PING_HEADERS_DIR="$PROJECT_DIR"/$PING_LIB_NAME/Sources/$PING_LIB_NAME/include
 
 # prepare osquery external extension build hook
 extension_symlink_path="$OSQUERY_SOURCE_PATH"/external/$EXTENSION_NAME
@@ -34,6 +38,9 @@ pushd "$OSQUERY_SOURCE_PATH" > /dev/null
 [ -d build ] || mkdir build
 pushd build > /dev/null
 
+PING_LIB_NAME=$PING_LIB_NAME \
+PING_LIB_DIR=$PING_LIB_DIR \
+PING_HEADERS_DIR="$PROJECT_DIR"/$PING_LIB_NAME/Sources/$PING_LIB_NAME/include \
 cmake \
 	-DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 \
 	.. || {

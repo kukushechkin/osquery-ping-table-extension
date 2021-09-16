@@ -61,4 +61,8 @@ EXTENSION_BINARY="$OSQUERY_SOURCE_PATH"/build/external/extension_ping/$DEFAULT_E
 	echo "extension artifact $EXTENSION_BINARY does not exist"
 	exit 5
 }
+
+echo "sample queries:"
+echo "	select * from ping where (host = '127.0.0.1' or host = 'apple.com') and latency < '0.03';";
+echo "	select * from ping where host = '127.0.0.1' or host = 'apple.com' or host = 'asdklajslkja';";
 osqueryi --extension "$EXTENSION_BINARY"

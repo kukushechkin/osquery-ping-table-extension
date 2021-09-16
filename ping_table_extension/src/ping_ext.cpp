@@ -13,6 +13,7 @@ TableColumns PingTableExt::columns() const {
 TableRows PingTableExt::generate(QueryContext& context) {
   TableRows results;
   
+  // Nothing to test here
   auto hosts = context.constraints["host"].getAll(EQUALS);
   for(const auto & host: hosts) {
     auto r = make_table_row();

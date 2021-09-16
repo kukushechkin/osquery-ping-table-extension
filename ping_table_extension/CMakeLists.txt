@@ -14,7 +14,5 @@ link_directories(
   "${CMAKE_CURRENT_SOURCE_DIR}/../swift-ping/.build/x86_64-apple-macosx/release"
 )
 
-# TODO: tests
-
 # oh, ffs
 generateOsqueryExtensionGroup()

@@ -25,6 +25,7 @@ Several decisions were made:
    1. `the-ping` library contains trivial tests for verifying reachable/unreachable destinations. Not much to unit test.
    2. 3rd party code from SimplePing has no unittests and is not easily testable. It is the most delicate part as it actually deals with user input and networking, so it is kinda wrong to not to have any tests there, but the assumption for the given timeframe was "it is old enough, so it means it is good enough"
    3. osquery extension has trivial logic and relies on osquery tests
+   4. tested manually on a different device from where the extension was built
 
 Overall took ~ 8 hours during the day. Around 80% of the time spent on figuring out how to build osquery and, well, actually building it (yes, boost).
 

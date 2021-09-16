@@ -157,7 +157,7 @@ static NSString * shortErrorFromError(NSError * error) {
     assert(pinger == self.pinger);
     assert(address != nil);
 
-    NSLog(@"pinging %@", displayAddressForAddress(address));
+    // NSLog(@"pinging %@", displayAddressForAddress(address));
 
     // Send the first ping straight away.
 
@@ -172,7 +172,7 @@ static NSString * shortErrorFromError(NSError * error) {
 - (void)simplePing:(SimplePing *)pinger didFailWithError:(NSError *)error {
     #pragma unused(pinger)
     assert(pinger == self.pinger);
-    NSLog(@"failed: %@", shortErrorFromError(error));
+    // NSLog(@"failed: %@", shortErrorFromError(error));
 
     [self.sendTimer invalidate];
     self.sendTimer = nil;
@@ -187,35 +187,35 @@ static NSString * shortErrorFromError(NSError * error) {
     #pragma unused(pinger)
     assert(pinger == self.pinger);
     #pragma unused(packet)
-    NSLog(@"#%u sent", (unsigned int) sequenceNumber);
+    // NSLog(@"#%u sent", (unsigned int) sequenceNumber);
 }
 
 - (void)simplePing:(SimplePing *)pinger didFailToSendPacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber error:(NSError *)error {
     #pragma unused(pinger)
     assert(pinger == self.pinger);
     #pragma unused(packet)
-    NSLog(@"#%u send failed: %@", (unsigned int) sequenceNumber, shortErrorFromError(error));
+    // NSLog(@"#%u send failed: %@", (unsigned int) sequenceNumber, shortErrorFromError(error));
 }
 
 - (void)simplePing:(SimplePing *)pinger didReceivePingResponsePacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber {
     #pragma unused(pinger)
     assert(pinger == self.pinger);
     #pragma unused(packet)
-    NSLog(@"#%u received, size=%zu", (unsigned int) sequenceNumber, (size_t) packet.length);
+    // NSLog(@"#%u received, size=%zu", (unsigned int) sequenceNumber, (size_t) packet.length);
 
     if(self.isSinglePing && sequenceNumber == 0) {
         self.pinger = nil;
     }
 
     self.duration = [[NSDate now] timeIntervalSinceDate:self.startTime];
-    NSLog(@"#%u ping duration: %f", (unsigned int) sequenceNumber, self.duration);
+    // NSLog(@"#%u ping duration: %f", (unsigned int) sequenceNumber, self.duration);
 }
 
 - (void)simplePing:(SimplePing *)pinger didReceiveUnexpectedPacket:(NSData *)packet {
     #pragma unused(pinger)
     assert(pinger == self.pinger);
 
-    NSLog(@"unexpected packet, size=%zu", (size_t) packet.length);
+    // NSLog(@"unexpected packet, size=%zu", (size_t) packet.length);
 }
 
 @end

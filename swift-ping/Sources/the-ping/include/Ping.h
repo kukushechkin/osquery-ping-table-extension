@@ -3,6 +3,8 @@
 
 #include <string>
 
-double latencyForDestination(const std::string&& dest);
+namespace Ping {
+double latencyForDestination(const std::string& dest);
+}
 
 #endif /* Ping_h */

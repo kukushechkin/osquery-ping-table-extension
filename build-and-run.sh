@@ -13,6 +13,10 @@ EXTENSION_NAME=extension_ping
 }
 
 # build ping library
+swift test --package-path "$PROJECT_DIR"/swift-ping || {
+	echo "ping lib test failed"
+	exit 2	
+}
 swift build --package-path "$PROJECT_DIR"/swift-ping --configuration release || {
 	echo "Failed to build the-ping lib"
 	exit 2

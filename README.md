@@ -22,7 +22,7 @@ Several decisions were made:
 2. Use Swift Package Manager to maintain dependencies. The plan was to take into use some shiny swift library with ping implementation and plug it through SPM and save on dependencies management in CMake. Swift library was found, but it a. did not work and required fixes and b. linking with osquery extension was a mess. Switched to an objc implementation based on [Apple SimplePing sample](https://developer.apple.com/library/archive/samplecode/SimplePing/Introduction/Intro.html), this part worked out fine.
 3. build and run script — the fastest way to glue an unusual workflow for osquery extension implementation
 4. Tests:
-   1. `the-ping` library contains trivial tests for verifying reachable/unreachable destinations. Not much to unit test.
+   1. `single-ping-lib` library contains trivial tests for verifying reachable/unreachable destinations. Not much to unit test.
    2. 3rd party code from SimplePing has no unittests and is not easily testable. It is the most delicate part as it actually deals with user input and networking, so it is kinda wrong to not to have any tests there, but the assumption for the given timeframe was "it is old enough, so it means it is good enough"
    3. osquery extension has trivial logic and relies on osquery tests
    4. tested manually on a different device from where the extension was built

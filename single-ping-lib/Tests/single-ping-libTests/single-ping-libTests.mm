@@ -17,7 +17,7 @@
 }
 
 - (void)testPing {
-    double latency = Ping::latencyForDestination("127.0.0.1");
+    double latency = Ping::latencyForDestination("1.1.1.1");
     XCTAssertTrue(latency > 0);
     XCTAssertTrue(latency < INFINITY);
     XCTAssertTrue(latency != 42.0); // the usual hardcoded test value

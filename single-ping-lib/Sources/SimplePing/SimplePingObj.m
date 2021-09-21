@@ -204,6 +204,8 @@ static NSString * shortErrorFromError(NSError * error) {
     // NSLog(@"#%u received, size=%zu", (unsigned int) sequenceNumber, (size_t) packet.length);
 
     if(self.isSinglePing && sequenceNumber == 0) {
+        [self.sendTimer invalidate];
+        self.sendTimer = nil;
         self.pinger = nil;
     }
 

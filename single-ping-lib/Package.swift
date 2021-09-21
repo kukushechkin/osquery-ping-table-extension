@@ -12,8 +12,6 @@ let package = Package(
             targets: ["single-ping-lib"]),
     ],
     dependencies: [
-        // using swift lib wasn't wise when it came to building actual osquery extension
-        // .package(name: "SwiftyPing", url: "https://github.com/kukushechkin/SwiftyPing", .branch("fix-observer-inform-on-success"))
     ],
     targets: [
         .target(
